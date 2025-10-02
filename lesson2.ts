@@ -43,3 +43,50 @@ anything = ['hello', 33, true];
 //２２-union型で複数型を使う
 let unionType: number | string = 7;
 let unionTypes: (number | string)[] = [77, 'hello'];
+
+//２３-Literal型で値を特定化 ＝＞ Enum型よりLiteral型推奨
+// constはデフォルト（自動）でLiteral型になる、letはString型になる
+
+// 右辺'apple'以外はエラー
+const apple: 'apple' = 'apple';
+let clothSize: 'small' | 'medium' | 'large' = 'large';
+// 明示的に指定
+const cloth: {
+  color: string;
+  size: 'small' | 'medium' | 'large';
+} = {
+  color: 'white',
+  size: 'medium',
+};
+
+// ２４-typeエイリアスで複雑な型に別名をつけて変数的に使う
+
+// ２３内にある 'small' | 'medium' | 'large' を type 使用で ClothSize へ代入化
+type ClothSize = 'small' | 'medium' | 'large';
+let clothSize_: ClothSize = 'large';
+// 明示的に指定
+const cloth_: {
+  color: string;
+  size: 'small' | 'medium' | 'large';
+} = {
+  color: 'white',
+  size: 'medium',
+};
+
+// ２５-関数に型を適応させる
+function add(num1: number, num2: number): number {
+  return num1 + num2;
+}
+add(1, 2);
+
+// ２６-関数の戻り値にvoid型を使う ＝＞　voidは何も返さない型
+function sayHello(): void {
+  console.log('Hello');
+}
+
+// ２７-undefined型,null型
+
+// undefined型,null型ともに値は代入不可
+let tmp: undefined = undefined;
+let tmp2: null = null;
+
