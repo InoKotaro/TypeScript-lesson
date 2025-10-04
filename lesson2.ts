@@ -60,7 +60,6 @@ const cloth: {
 };
 
 // ２４-typeエイリアスで複雑な型に別名をつけて変数的に使う
-
 // ２３内にある 'small' | 'medium' | 'large' を type 使用で ClothSize へ代入化
 type ClothSize = 'small' | 'medium' | 'large';
 let clothSize_: ClothSize = 'large';
@@ -85,8 +84,26 @@ function sayHello(): void {
 }
 
 // ２７-undefined型,null型
-
 // undefined型,null型ともに値は代入不可
 let tmp: undefined = undefined;
 let tmp2: null = null;
 
+// ※関数に型は => で指定する
+// ２８-関数型を使って、特定の関数のみを代入できる変数
+const anotherAdd: (n1: number, n2: number) => number = add;
+
+// 無名関数パターン
+const anotherAdd_: (n1: number, n2: number) => number = function (n1: number, n2: number): number {
+  return n1 + n2;
+};
+
+// ２９-callback関数に型をつける
+function doubleAndHandle(num: number, cb: (num: number) => number): void {
+  const doubleNum = cb(num * 2);
+  console.log('２９-callback関数に型をつける');
+  console.log(doubleNum);
+}
+
+doubleAndHandle(50, (r) => {
+  return r;
+});
