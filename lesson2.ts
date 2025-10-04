@@ -107,3 +107,19 @@ function doubleAndHandle(num: number, cb: (num: number) => number): void {
 doubleAndHandle(50, (r) => {
   return r;
 });
+
+// ３０-unknown型で柔軟なany型より厳しく型定義
+let unknownInput: unknown;
+let anyInput: any;
+let text: string;
+anyInput = 'hello';
+unknownInput = 'hello';
+unknownInput = 7;
+unknownInput = true;
+// text = unknownInput; // unknown型 ＝＞ string型代入要注意
+text = anyInput; // any型 ＝＞ string型に代入可能
+
+// unknown型 ＝＞ string型代入 は typeof を使用（タイプガード）
+if (typeof unknownInput === 'string') {
+  text = unknownInput;
+}
