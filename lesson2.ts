@@ -123,3 +123,8 @@ text = anyInput; // any型 ＝＞ string型に代入可能
 if (typeof unknownInput === 'string') {
   text = unknownInput;
 }
+
+// ３１-型チェックはsatisfies演算子を使う　
+7 satisfies number;
+// "7" satisfies number; ではエラーになる
+
