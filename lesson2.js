@@ -1,18 +1,18 @@
-var hasVehicle = true;
-var count = 10;
-var negative = -0.5;
-var float = 3.14;
-var hello = 'hello';
-var person = {
+let hasVehicle = true;
+let count = 10;
+let negative = -0.5;
+let float = 3.14;
+let hello = 'hello';
+const person = {
     name: 'Jack',
     age: 27,
 };
 console.log(person.name);
 //１８-配列に型をつける
-var fruits = ['Apple', 'Banana', 'Grape'];
+const fruits = ['Apple', 'Banana', 'Grape'];
 console.log(fruits);
 //１９-Tuple型で配列作成
-var book = ['business', 1500, false];
+const book = ['business', 1500, false];
 console.log(book);
 //２０-Enum型で特定まとまったグループ限定で受け入れる列挙型
 var CoffeeSize;
@@ -22,30 +22,30 @@ var CoffeeSize;
     CoffeeSize[CoffeeSize["GRANDE"] = 2] = "GRANDE";
     CoffeeSize[CoffeeSize["VENTI"] = 3] = "VENTI";
 })(CoffeeSize || (CoffeeSize = {}));
-var coffee = {
+const coffee = {
     hot: true,
     size: CoffeeSize.TALL,
 };
 //２１-any型は型自体を不適用化
-var anything = true;
+let anything = true;
 anything = 'hello';
 anything = ['hello', 33, true];
 //２２-union型で複数型を使う
-var unionType = 7;
-var unionTypes = [77, 'hello'];
+let unionType = 7;
+let unionTypes = [77, 'hello'];
 //２３-Literal型で値を特定化 ＝＞ Enum型よりLiteral型推奨
 // constはデフォルト（自動）でLiteral型になる、letはString型になる
 // 右辺'apple'以外はエラー
-var apple = 'apple';
-var clothSize = 'large';
+const apple = 'apple';
+let clothSize = 'large';
 // 明示的に指定
-var cloth = {
+const cloth = {
     color: 'white',
     size: 'medium',
 };
-var clothSize_ = 'large';
+let clothSize_ = 'large';
 // 明示的に指定
-var cloth_ = {
+const cloth_ = {
     color: 'white',
     size: 'medium',
 };
@@ -60,28 +60,28 @@ function sayHello() {
 }
 // ２７-undefined型,null型
 // undefined型,null型ともに値は代入不可
-var tmp = undefined;
-var tmp2 = null;
+let tmp = undefined;
+let tmp2 = null;
 // ※関数に型は => で指定する
 // ２８-関数型を使って、特定の関数のみを代入できる変数
-var anotherAdd = add;
+const anotherAdd = add;
 // 無名関数パターン
-var anotherAdd_ = function (n1, n2) {
+const anotherAdd_ = function (n1, n2) {
     return n1 + n2;
 };
 // ２９-callback関数に型をつける
 function doubleAndHandle(num, cb) {
-    var doubleNum = cb(num * 2);
+    const doubleNum = cb(num * 2);
     console.log('２９-callback関数に型をつける');
     console.log(doubleNum);
 }
-doubleAndHandle(50, function (r) {
+doubleAndHandle(50, (r) => {
     return r;
 });
 // ３０-unknown型で柔軟なany型より厳しく型定義
-var unknownInput;
-var anyInput;
-var text;
+let unknownInput;
+let anyInput;
+let text;
 anyInput = 'hello';
 unknownInput = 'hello';
 unknownInput = 7;
@@ -100,4 +100,4 @@ function error(message) {
     throw new Error(message);
 }
 console.log(error('This is an error'));
-//
+export {};
