@@ -128,3 +128,8 @@ if (typeof unknownInput === 'string') {
 7 satisfies number;
 // "7" satisfies number; ではエラーになる
 
+// ３２-never型で起こり得ない型を使用
+function error(message: string): never {
+  throw new Error(message);
+}
+console.log(error('This is an error'));

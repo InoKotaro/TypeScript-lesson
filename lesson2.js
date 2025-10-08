@@ -78,3 +78,26 @@ function doubleAndHandle(num, cb) {
 doubleAndHandle(50, function (r) {
     return r;
 });
+// ３０-unknown型で柔軟なany型より厳しく型定義
+var unknownInput;
+var anyInput;
+var text;
+anyInput = 'hello';
+unknownInput = 'hello';
+unknownInput = 7;
+unknownInput = true;
+// text = unknownInput; // unknown型 ＝＞ string型代入要注意
+text = anyInput; // any型 ＝＞ string型に代入可能
+// unknown型 ＝＞ string型代入 は typeof を使用（タイプガード）
+if (typeof unknownInput === 'string') {
+    text = unknownInput;
+}
+// ３１-型チェックはsatisfies演算子を使う　
+7;
+// "7" satisfies number; ではエラーになる
+// ３２-never型で起こり得ない型を使用
+function error(message) {
+    throw new Error(message);
+}
+console.log(error('This is an error'));
+//
