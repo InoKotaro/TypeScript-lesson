@@ -31,15 +31,18 @@
 // ブラウザ内デベロッパーツール等でtsファイルを操作する際に、ソースマップを使用してtsファイルを操作する
 // 要はjs => ts へ逆算可能になる
 
-// ４２-outDirとrootDir、removeComments、noEmit、downlevelIteration設定方法
+// ４４- outDirとrootDir、removeComments、noEmit、downlevelIteration設定方法
 // "outDir": "./dist" と書けば tsc 実行で ./dist フォルダと一緒にjsファイルが作成される
 // ※無駄フォルダができないように作成される
-
 // "rootDir": "./src" と書けば 厳密に./src フォルダと一緒にtsファイルが作成される
 // ※ただし全ファイルを srcフォルダに格納する必要がある、しないとエラーになる
-
 // "removeComments": true と書けば コンパイル後jsファイル内にコメントを残さない
-
 // "noEmit": true と書けば コンパイル後jsファイルを作成しない、型チェックだけする
-
 // "downlevelIteration": true と書けば ES3,ES5限定で for of（繰り返し処理） を使用できる
+
+// ４３- noEmitOnErrorオプションでエラー発生時にコンパイルしない方法
+// noEmitOnError: true と書けばコンパイル時にエラーが発生すると自動停止
+
+// ４４- noImplicitAny, strictNullChecksなどstrictの設定
+// "noImplicitAny": true で自動的に any型が設定されるのを防止 => 明示的に any型設定する際はエラーならない（any型を明示的に設定は非推奨）
+// "strictNullChecks": true でnull, undefined をstring, number などとは別として扱うようになる => 型を明示的に書く必要がある
