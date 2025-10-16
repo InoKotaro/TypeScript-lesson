@@ -46,3 +46,15 @@
 // ４４- noImplicitAny, strictNullChecksなどstrictの設定
 // "noImplicitAny": true で自動的に any型が設定されるのを防止 => 明示的に any型設定する際はエラーならない（any型を明示的に設定は非推奨）
 // "strictNullChecks": true でnull, undefined をstring, number などとは別として扱うようになる => 型を明示的に書く必要がある
+
+// ４５- additional Checksオプション でコードを最適化する方法
+//  "noUnusedLocals": true と書けば関数内で使用されていない変数をエラーになる
+//  "noUnuseParameters": true と書けば関数内で使用されていない引数をエラーになる
+//  "noImplicitReturns": true と書けばif / switchなどでfalseパターンでreturnがないとエラーになる => 明示的にreturnを書く必要がある => undefined が返る挙動になることがあるので、バグ防止になる
+
+// ４６- forceConsistentCasingInFileNames, isolatedModules, skibLibCheck, extends, Projects
+//  "forceConsistentCasingInFileNames": true と書けばファイル名の大文字小文字を一致させる => ファイル名が大文字小文字で違うとエラーになる
+//  "isolatedModules": true と書けば ファイルを独立して扱う => ファイルを独立して扱うことで、ファイル間の依存関係を削除する
+//  "skipLibCheck": true と書けば ライブラリの型チェックをスキップする => ライブラリの型チェックをスキップすることで、ビルド速度を向上させる
+//  "extends": "./tsconfig.json" と書けば 他のtsconfig.jsonを継承する => 他のtsconfig.jsonを継承することで、設定を共有する
+//  "projects": ["./tsconfig.json", "./tsconfig.app.json"] と書けば 複数のtsconfig.jsonを指定する => 複数のtsconfig.jsonを指定することで、設定を共有する
