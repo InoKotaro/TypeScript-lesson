@@ -1,8 +1,9 @@
+"use strict";
 let hasVehicle = true;
 let count = 10;
 let negative = -0.5;
 let float = 3.14;
-let hello = 'hello';
+let hello_ = 'hello';
 const person = {
     name: 'Jack',
     age: 27,
@@ -100,4 +101,3 @@ function error(message) {
     throw new Error(message);
 }
 console.log(error('This is an error'));
-export {};
