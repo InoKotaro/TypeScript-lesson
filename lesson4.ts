@@ -53,6 +53,30 @@ user3.greet();
 // TypeScriptでは、クラス自体を型としても使用可能
 
 let user: User50;  // User型の変数として定義
-user = new User50("ユーザー４", 400);  // Userクラスのインスタンスを代入
+user = new User50("ユーザー４", 400);// Userクラスのインスタンスを代入
+user.greet();
+  
 
-// ※new User50("ユーザー５", 500).greet(); 変数に代入しなくてもクラスは使える
+// ※変数に代入しなくてもクラスは使える
+new User50('ユーザー５', 500).greet(); 
+
+
+// ５１- コンパイルされるとclassはどう書き換わるか
+// JavaScript のクラス構文または関数ベースのプロトタイプ構文に変換される
+// 型注釈（: string など）はコンパイル時にすべて消え、純粋な JavaScript 構文のみへ書き換わる
+
+// ５２- クラスにメソッドを追加する方法 -this
+class Person50 {
+  name: string;
+
+  constructor(User_name: string) {
+    this.name = User_name;
+  }
+
+  greeting(this: { name: string }) {
+    console.log(`Hello! My name is ${this.name}.`);
+  }
+}
+
+const bob50 = new Person50('Bob');
+bob50.greeting();
