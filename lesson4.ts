@@ -151,3 +151,26 @@ bob55.greeting();
 bob55.incrementAge();
 // 1歳加算されて表示
 bob55.greeting();
+
+// ５６- readonly修飾子 を使って書き換え出来ないようにする
+// public or private　or readonly どれかは書く必要あり
+class Person56 {
+  constructor(
+    public readonly name: string,
+    private age: number,
+  ) {}
+
+  incrementAge() {
+    this.age++;
+  }
+
+  greeting(this: Person56) {
+    console.log(`５５-Hello! My name is ${this.name}. I am ${this.age} years old.`);
+  }
+}
+
+const bob56 = new Person56('Bob', 30);
+bob56.greeting();
+bob56.incrementAge();
+// 1歳加算されて表示
+bob56.greeting();
