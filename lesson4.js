@@ -110,3 +110,69 @@ bob55.greeting();
 bob55.incrementAge();
 // 1歳加算されて表示
 bob55.greeting();
+// ５６- readonly修飾子 を使って書き換え出来ないようにする、書き換える必要がない変数に書く
+// public or private or readonly どれかは書く必要あり
+class Person56 {
+    constructor(name, age) {
+        this.name = name;
+        this.age = age;
+    }
+    incrementAge() {
+        this.age++;
+    }
+    greeting() {
+        console.log(`５６-Hello! My name is ${this.name}. I am ${this.age} years old.`);
+    }
+}
+const bob56 = new Person56('Bob', 30);
+bob56.greeting();
+bob56.incrementAge();
+// 1歳加算されて表示
+bob56.greeting();
+// ５７- extendsを使用して他クラス機能を継承する
+class Person57 {
+    constructor(name, age) {
+        this.name = name;
+        this.age = age;
+    }
+    incrementAge() {
+        this.age++;
+    }
+    greeting() {
+        console.log(`５７-Hello! My name is ${this.name}. I am ${this.age} years old.`);
+    }
+}
+class Teacher57 extends Person57 {
+    constructor(name, age, subject) {
+        super(name, age);
+        this.subject = subject;
+    }
+}
+// Person57クラスを継承してあるTeacher57クラスを使用
+const teacher57 = new Teacher57('Bob', 30, 'Math');
+teacher57.greeting();
+// ５８- protected修飾子を使用して、継承先までアクセス可能範囲を広げる、それ以降は制限あり
+class Person58 {
+    constructor(name, age) {
+        this.name = name;
+        this.age = age;
+    }
+    incrementAge() {
+        this.age++;
+    }
+    greeting() {
+        console.log(`５８-Hello! My name is ${this.name}. I am ${this.age} years old. `);
+    }
+}
+class Teacher58 extends Person58 {
+    constructor(name, age, subject) {
+        super(name, age);
+        this.subject = subject;
+    }
+    greeting() {
+        console.log(`５８-Hello! My name is ${this.name}. I am ${this.age} years old. I teach ${this.subject}.`);
+    }
+}
+// Person57クラスを継承してあるTeacher57クラスを使用
+const teacher58 = new Teacher58('Bob', 30, 'Math');
+teacher58.greeting();
