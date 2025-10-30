@@ -173,6 +173,49 @@ class Teacher58 extends Person58 {
         console.log(`５８-Hello! My name is ${this.name}. I am ${this.age} years old. I teach ${this.subject}.`);
     }
 }
-// Person57クラスを継承してあるTeacher57クラスを使用
+// Person58クラスを継承してあるTeacher58クラスを使用
 const teacher58 = new Teacher58('Bob', 30, 'Math');
 teacher58.greeting();
+// ５９- ゲッターとセッター使い方
+// クラス内で
+// ゲッター（getter） → 値を「取得」するためのメソッド
+// セッター（setter） → 値を「設定」するためのメソッド
+// を用意して、外部から直接プロパティに触らないようにする
+class Person59 {
+    constructor(name, age) {
+        this.name = name;
+        this.age = age;
+    }
+    incrementAge() {
+        this.age++;
+    }
+    greeting() {
+        console.log(`５９-Hello! My name is ${this.name}. I am ${this.age} years old. `);
+    }
+}
+class Teacher59 extends Person59 {
+    // 値を取得時にget起動
+    get subject_() {
+        return this._subject;
+    }
+    // 値を代入時にset起動
+    set subject(value) {
+        this._subject = value;
+    }
+    constructor(name, age, _subject) {
+        super(name, age);
+        this._subject = _subject;
+    }
+    greeting() {
+        console.log(
+        // 282行目内this.subject_ は 264行目get subject_ を起動させてる
+        `５９-Hello! My name is ${this.name}. I am ${this.age} years old. I teach ${this.subject_}.`);
+    }
+}
+// Person59クラスを継承してあるTeacher59クラスを使用
+const teacher59 = new Teacher59('Bob', 30, 'Math');
+console.log(teacher59.subject_);
+teacher59.subject = 'English';
+console.log(teacher59.subject_);
+// console.log(teacher59._subject);  277行目をpublicにすればコンソール表示蚊
+teacher59.greeting();
