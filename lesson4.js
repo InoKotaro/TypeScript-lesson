@@ -194,13 +194,13 @@ class Person59 {
     }
 }
 class Teacher59 extends Person59 {
-    // 値を取得時にget起動
-    get subject_() {
-        return this._subject;
-    }
-    // 値を代入時にset起動
+    // 値を292行目で代入時にset起動
     set subject(value) {
         this._subject = value;
+    }
+    // 値を291,293行目で取得時にget起動
+    get subject_() {
+        return this._subject;
     }
     constructor(name, age, _subject) {
         super(name, age);
@@ -219,3 +219,89 @@ teacher59.subject = 'English';
 console.log(teacher59.subject_);
 // console.log(teacher59._subject);  277行目をpublicにすればコンソール表示蚊
 teacher59.greeting();
+// ６０- staticを使用して、インスタンスを作らずにクラスを使う
+// クラスに属するが、インスタンスには属さない設定をする際に使う
+// Q:なぜクラスに属するが、インスタンスには属さない設定が必要なのか？
+// A:社員クラスで言うと
+// ▷全員同じ「AI株式会社」という情報を持っている
+// ▷メモリ的にも非効率
+// ▷もし社名が変わると、全インスタンスを更新する必要がある
+// から必要
+class Person60 {
+    static isAdult(age) {
+        if (age >= 20)
+            return true;
+        return false;
+    }
+    constructor(name, age) {
+        this.name = name;
+        this.age = age;
+    }
+    incrementAge() {
+        this.age++;
+    }
+    greeting() {
+        console.log(`６０-Hello! My name is ${this.name}. I am ${this.age} years old. `);
+    }
+}
+Person60.country = 'America';
+class Teacher60 extends Person60 {
+    set subject(value) {
+        this._subject = value;
+    }
+    get subject_() {
+        return this._subject;
+    }
+    constructor(name, age, _subject) {
+        super(name, age);
+        this._subject = _subject;
+    }
+    greeting() {
+        console.log(`６０-Hello! My name is ${this.name}. I am ${this.age} years old. I teach ${this.subject_}.`);
+    }
+}
+const teacher60 = new Teacher60('Bob', 30, 'Math');
+console.log(teacher60.subject_);
+teacher60.subject = 'English';
+console.log(teacher60.subject_);
+teacher60.greeting();
+console.log(Person60.country);
+// ６１- Abstractクラスを使用して、継承にのみ使えるクラスを作成
+// 抽象クラスは、継承されるためのクラスで、インスタンス化できない
+// 継承するためだけに作成するクラスと考える
+class Person61 {
+    static isAdult(age) {
+        if (age >= 20)
+            return true;
+        return false;
+    }
+    constructor(name, age) {
+        this.name = name;
+        this.age = age;
+    }
+    incrementAge() {
+        this.age++;
+    }
+    greeting() {
+        console.log(`６１-Hello! My name is ${this.name}. I am ${this.age} years old. `);
+        this.explainJob();
+    }
+}
+Person61.country = 'America';
+class Teacher61 extends Person61 {
+    explainJob() {
+        console.log(`I am a teacher. I teach ${this.subject_}`);
+    }
+    set subject(value) {
+        this._subject = value;
+    }
+    get subject_() {
+        return this._subject;
+    }
+    constructor(name, age, _subject) {
+        super(name, age);
+        this._subject = _subject;
+    }
+}
+const teacher61 = new Teacher61('Katherine', 30, 'Social Studies');
+teacher61.greeting();
