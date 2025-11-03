@@ -305,3 +305,40 @@ class Teacher61 extends Person61 {
 }
 const teacher61 = new Teacher61('Katherine', 30, 'Social Studies');
 teacher61.greeting();
+// ６２- privateをconstructorに付けて、シングルトンパターンを実装
+class Person62 {
+    static isAdult(age) {
+        if (age >= 20)
+            return true;
+        return false;
+    }
+    constructor(name, age) {
+        this.name = name;
+        this.age = age;
+    }
+    incrementAge() {
+        this.age++;
+    }
+    greeting() {
+        console.log(`６２-Hello! My name is ${this.name}. I am ${this.age} years old. `);
+        this.explainJob();
+    }
+}
+Person62.country = 'America';
+class Teacher62 extends Person62 {
+    explainJob() {
+        console.log(`I am a teacher. I teach ${this.subject_}`);
+    }
+    set subject(value) {
+        this._subject = value;
+    }
+    get subject_() {
+        return this._subject;
+    }
+    constructor(name, age, _subject) {
+        super(name, age);
+        this._subject = _subject;
+    }
+}
+const teacher62 = new Teacher62('Katherine', 30, 'Social Studies');
+teacher62.greeting();

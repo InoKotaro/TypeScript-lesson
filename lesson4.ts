@@ -409,3 +409,70 @@ class Teacher61 extends Person61 {
 
 const teacher61 = new Teacher61('Katherine', 30, 'Social Studies');
 teacher61.greeting();
+
+// ６２- privateをconstructorに付けて、シングルトンパターンを実装
+// シングルトンパターンはクラスから一つしかオブジェクトを生成させないデザインパターン
+abstract class Person62 {
+  static country = 'America';
+  static isAdult(age: number) {
+    if (age >= 20) return true;
+
+    return false;
+  }
+
+  constructor(
+    public readonly name: string,
+    protected age: number,
+  ) {}
+
+  incrementAge() {
+    this.age++;
+  }
+
+  greeting(this: Person62) {
+    console.log(`６２-Hello! My name is ${this.name}. I am ${this.age} years old. `);
+    this.explainJob();
+  }
+
+  abstract explainJob(): void;
+}
+
+class Teacher62 extends Person62 {
+  // private static instance; でクラスとして値を１つだけ保持させる
+  // private 設定で外部からアクセス遮断するため
+  // プロパティ は static を設定して467行目getInstance()からアクセスするため
+  // フィールド は instance: Teacher62 を指定
+  private static instance: Teacher62;
+
+  explainJob() {
+    console.log(`I am a teacher. I teach ${this.subject_}`);
+  }
+
+  set subject(value: string) {
+    this._subject = value;
+  }
+
+  get subject_() {
+    return this._subject;
+  }
+
+  private constructor(
+    name: string,
+    age: number,
+    private _subject: string,
+  ) {
+    super(name, age);
+  }
+
+  static getInstance() {
+    if (Teacher62.instance) {
+      return Teacher62.instance;
+    }
+
+    Teacher62.instance = new Teacher62('Katherine', 30, 'Social Studies');
+    return Teacher62.instance;
+  }
+}
+
+const teacher62 = Teacher62.getInstance();
+teacher62.greeting();
