@@ -306,6 +306,7 @@ class Teacher61 extends Person61 {
 const teacher61 = new Teacher61('Katherine', 30, 'Social Studies');
 teacher61.greeting();
 // ６２- privateをconstructorに付けて、シングルトンパターンを実装
+// シングルトンパターンはクラスから一つしかオブジェクトを生成させないデザインパターン
 class Person62 {
     static isAdult(age) {
         if (age >= 20)
@@ -339,6 +340,13 @@ class Teacher62 extends Person62 {
         super(name, age);
         this._subject = _subject;
     }
+    static getInstance() {
+        if (Teacher62.instance) {
+            return Teacher62.instance;
+        }
+        Teacher62.instance = new Teacher62('Katherine', 30, 'Social Studies');
+        return Teacher62.instance;
+    }
 }
-const teacher62 = new Teacher62('Katherine', 30, 'Social Studies');
+const teacher62 = Teacher62.getInstance();
 teacher62.greeting();
