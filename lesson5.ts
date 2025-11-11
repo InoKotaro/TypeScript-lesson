@@ -127,3 +127,42 @@ const tmpDeveloper69 = {
 let user69: Human69 = new Developer69('Bob', 50, 30);
 user69 = tmpDeveloper69;
 user69.greeting('69-readonly-test');
+
+// ７０- extendsを使ってinterfaceを継承
+interface Nameable {
+  name: string;
+}
+
+// プロパティ上書きは型が一致してれば可能
+// Human70 内に name: string を書いてもエラーならない
+interface Human70 extends Nameable {
+  age: number;
+  greeting(message: string): void;
+}
+
+class Developer70 implements Human70 {
+  constructor(
+    public name: string,
+    public age: number,
+    public experience: number,
+  ) {}
+
+  greeting(message: string) {
+    console.log(message);
+    console.log(this.name, this.age, this.experience);
+  }
+}
+
+const tmpDeveloper70 = {
+  name: 'Jack',
+  age: 38,
+  experience: 5,
+  greeting(message: string) {
+    console.log(message);
+    console.log(this.name, this.age, this.experience);
+  },
+};
+
+let user70: Human70 = new Developer70('Bob', 50, 30);
+user70 = tmpDeveloper70;
+user70.greeting('70-readonly-test');
