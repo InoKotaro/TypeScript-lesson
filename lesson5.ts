@@ -166,3 +166,53 @@ const tmpDeveloper70 = {
 let user70: Human70 = new Developer70('Bob', 50, 30);
 user70 = tmpDeveloper70;
 user70.greeting('70-readonly-test');
+
+// ７１-  interfaceで関数の型を表現する方法 -コールシグネチャ, コンストラクタシグネチャ
+interface addFunc {
+  // コールシグネチャ
+  (num1: number, num2: number): number;
+  
+  // コンストラクタシグネチャ
+  // new(num1: number, num2: number): number;
+}
+
+let addFunc: addFunc;
+addFunc = (n1: number, n2: number) => {
+  return n1 + n2;
+};
+
+interface Nameable {
+  name: string;
+}
+
+interface Human71 extends Nameable {
+  age: number;
+  greeting(message: string): void;
+}
+
+class Developer71 implements Human71 {
+  constructor(
+    public name: string,
+    public age: number,
+    public experience: number,
+  ) {}
+
+  greeting(message: string) {
+    console.log(message);
+    console.log(this.name, this.age, this.experience);
+  }
+}
+
+const tmpDeveloper71 = {
+  name: 'Jack',
+  age: 38,
+  experience: 5,
+  greeting(message: string) {
+    console.log(message);
+    console.log(this.name, this.age, this.experience);
+  },
+};
+
+let user71: Human71 = new Developer71('Bob', 50, 30);
+user71 = tmpDeveloper71;
+user71.greeting('71-readonly-test');
