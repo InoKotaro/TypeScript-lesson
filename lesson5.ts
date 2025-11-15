@@ -168,16 +168,16 @@ user70 = tmpDeveloper70;
 user70.greeting('70-readonly-test');
 
 // ７１-  interfaceで関数の型を表現する方法 -コールシグネチャ, コンストラクタシグネチャ
-interface addFunc {
+interface addFunc71 {
   // コールシグネチャ
   (num1: number, num2: number): number;
-  
+
   // コンストラクタシグネチャ
   // new(num1: number, num2: number): number;
 }
 
-let addFunc: addFunc;
-addFunc = (n1: number, n2: number) => {
+let addFunc71: addFunc71;
+addFunc71 = (n1: number, n2: number) => {
   return n1 + n2;
 };
 
@@ -216,3 +216,64 @@ const tmpDeveloper71 = {
 let user71: Human71 = new Developer71('Bob', 50, 30);
 user71 = tmpDeveloper71;
 user71.greeting('71-readonly-test');
+
+// 72- ?を使ってオプショナルプロパティやオプショナルパラメーター、デフォルト引数を使用
+// パラメータ、プロパティでも使える
+interface addFunc72 {
+  (num1: number, num2: number): number;
+}
+
+let addFunc72: addFunc72;
+addFunc72 = (n1: number, n2: number) => {
+  return n1 + n2;
+};
+
+interface Nameable {
+  name: string;
+  nickName?: string;
+}
+
+const Nameable: Nameable = {
+  name: 'Bob',
+  // interface Nameable内で?をつけると無くてもエラーにならない
+  // undefinedになるとして扱われる
+  // nickName: 'Eri',
+};
+
+const Nameable2: Nameable = {
+  name: 'Bob',
+
+  nickName: 'Eri',
+};
+
+interface Human72 extends Nameable {
+  age: number;
+  greeting(message: string): void;
+}
+
+class Developer72 implements Human72 {
+  constructor(
+    public name: string,
+    public age: number,
+    public experience: number,
+  ) {}
+
+  greeting(message: string) {
+    console.log(message);
+    console.log(this.name, this.age, this.experience);
+  }
+}
+
+const tmpDeveloper72 = {
+  name: 'Jack',
+  age: 38,
+  experience: 5,
+  greeting(message: string) {
+    console.log(message);
+    console.log(this.name, this.age, this.experience);
+  },
+};
+
+let user72: Human72 = new Developer72('Bob', 50, 30);
+user72 = tmpDeveloper72;
+user72.greeting('72-readonly-test');
