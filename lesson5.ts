@@ -277,3 +277,19 @@ const tmpDeveloper72 = {
 let user72: Human72 = new Developer72('Bob', 50, 30);
 user72 = tmpDeveloper72;
 user72.greeting('72-readonly-test');
+
+// ７３- オブジェクトキー
+const data = 'prop';
+
+// オブジェクトキーにはstring型, number型, symbol型しか指定できない
+const obj: {
+  'user-id': string;
+  1: number;
+  name: string;
+  [data]: string;
+} = {
+  'user-id': 'tester',
+  1: 1,
+  name: 'Bob',
+  [data]: 'hello',
+};
