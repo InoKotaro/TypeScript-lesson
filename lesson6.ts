@@ -85,12 +85,18 @@ describeProfile(Ellie77);
 
 // 3⃣instanceof演算子で特定クラスのインスタンスかどうかを判定して型ガードとして利用できる
 class cat77 {
+  // ７８-タグ付きUnionで型を限定化
+  kind: 'cat' = 'cat';
+
   speak() {
     console.log('3⃣ meow');
   }
 }
 
 class bird77 {
+  // ７８-タグ付きUnionで型を限定化
+  kind: 'bird' = 'bird';
+
   speak() {
     console.log('3⃣ tweet');
   }
@@ -105,6 +111,11 @@ type Pet77 = cat77 | bird77;
 function havePet(pet: Pet77) {
   // speakメソッドは共通
   pet.speak();
+  // ７８-タグをつけるとswitch文で限定も可能
+  switch (pet.kind) {
+    case 'bird':
+      pet.fly();
+  }
   if (pet instanceof bird77) {
     // flyメソッドはbird77だけなのでinstanceof使用でチェック
     pet.fly();
@@ -115,3 +126,14 @@ function havePet(pet: Pet77) {
 // でないと反映されない
 havePet(new cat77());
 havePet(new bird77());
+
+// ７９- 型アサーション(as)を使って、手動で型を上書き
+const input = <HTMLInputElement>document.getElementById('input');
+input.value = 'initial input value';
+
+// ７９- jsxファイルで推奨
+const inputAS = document.getElementById('input') as HTMLInputElement;
+inputAS.value = 'initial input value';
+
+// ７９- jsxファイル推奨と一緒（括弧を忘れないように）
+(document.getElementById('input') as HTMLInputElement).value = 'initial input value';
