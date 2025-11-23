@@ -129,11 +129,30 @@ havePet(new bird77());
 
 // ７９- 型アサーション(as)を使って、手動で型を上書き
 const input = <HTMLInputElement>document.getElementById('input');
+
 input.value = 'initial input value';
 
 // ７９- jsxファイルで推奨
 const inputAS = document.getElementById('input') as HTMLInputElement;
+// ８０- !(Non-null assertion operator)を式文末に書くと、式がnullまたはundefinedではないと断言可能
+// ８０- const inputAS = document.getElementById('input')!;
 inputAS.value = 'initial input value';
 
 // ７９- jsxファイル推奨と一緒（括弧を忘れないように）
 (document.getElementById('input') as HTMLInputElement).value = 'initial input value';
+
+// ８１- インデックスシグネチャを使用して柔軟なオブジェクトを作る方法 - noUncheckedIndexedAccess==========
+interface Designer {
+  name: string;
+  [example: string]: string;
+}
+
+const designer: Designer = {
+  name: 'Catherine',
+};
+
+let test = 'name';
+// designer[test]に入る値が undefined の可能性があるため安全策として ? を書く
+designer[test]?.toUpperCase();
+
+// ============================================================================================
