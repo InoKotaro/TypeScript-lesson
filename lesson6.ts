@@ -156,3 +156,22 @@ let test = 'name';
 designer[test]?.toUpperCase();
 
 // ============================================================================================
+
+// ８３- 関数のオーバーロードを使って、戻り値の型を正しくTypeScriptに伝える
+// 実際の返り値は string または number のどちらかだが、 TypeScript が認識する返り値の型は string | number → ユニオン型
+// ※書く順番要注意
+
+// ※as stringでupperHelloがstring型に指定するのも方法としてはある
+// オーバーロード → 呼び出し時の型が正確に確定する
+// Union → 1つの関数で済むが、呼び出し時の型推論が弱い
+function toUpperCase83(x: string): string;
+function toUpperCase83(x: number): number;
+// 上記がなくてもエラーにはならないが正確な string型ではなくstring | numberでUnion型で返る → 正確な型推論が欲しい場合はオーバーロードを使う
+
+function toUpperCase83(x: string | number): string | number {
+  if (typeof x === 'string') {
+    return x.toUpperCase();
+  }
+  return x;
+}
+const upperHello = toUpperCase('hello');
