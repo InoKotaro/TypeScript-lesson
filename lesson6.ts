@@ -141,7 +141,7 @@ inputAS.value = 'initial input value';
 // ７９- jsxファイル推奨と一緒（括弧を忘れないように）
 (document.getElementById('input') as HTMLInputElement).value = 'initial input value';
 
-// ８１- インデックスシグネチャを使用して柔軟なオブジェクトを作る方法 - noUncheckedIndexedAccess==========
+// ８１- インデックスシグネチャを使用して柔軟なオブジェクトを作る方法 - noUncheckedIndexedAccess
 interface Designer {
   name: string;
   [example: string]: string;
@@ -149,15 +149,42 @@ interface Designer {
 
 const designer: Designer = {
   name: 'Catherine',
+  role: 'backend',
 };
+
+// ８３- Optional Chaining<オプショナル・チェイニング>使い方
+interface downloadFile {
+  id: number;
+  user?: {
+    name?: {
+      first: string;
+      last: string;
+    };
+  };
+}
+
+const downloadFile: downloadFile = {
+  id: 1,
+  user: {
+    name: {
+      first: 'John',
+      last: 'Doe',
+    },
+  },
+};
+
+// ８３- ?を書くと use,nameがないときはエラーにならず途中で undefined を返して安全にアクセスできる
+console.log(downloadFile.user?.name?.first);
+// ８４- Nullish Coalescing<ナリッシュ・コアレッシング>使い方
+// downloadFile.user が undefined か null であれば右辺を返す
+// || と違いは undefined か null で限定されてる点
+const userFile = downloadFile.user ?? 'no-name';
 
 let test = 'name';
 // designer[test]に入る値が undefined の可能性があるため安全策として ? を書く
 designer[test]?.toUpperCase();
 
-// ============================================================================================
-
-// ８３- 関数のオーバーロードを使って、戻り値の型を正しくTypeScriptに伝える
+// ８２- 関数のオーバーロードを使って、戻り値の型を正しくTypeScriptに伝える
 // 実際の返り値は string または number のどちらかだが、 TypeScript が認識する返り値の型は string | number → ユニオン型
 // ※書く順番要注意
 
