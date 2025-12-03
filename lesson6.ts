@@ -175,6 +175,11 @@ const downloadFile: downloadFile = {
 
 // ８３- ?を書くと use,nameがないときはエラーにならず途中で undefined を返して安全にアクセスできる
 console.log(downloadFile.user?.name?.first);
+const userName = downloadFile.user ?? 'no-user';
+
+// ８５- LookUp型(インデックスアクセス型)を使ってプロパティの型を取得
+type id = downloadFile['id'];
+
 // ８４- Nullish Coalescing<ナリッシュ・コアレッシング>使い方
 // downloadFile.user が undefined か null であれば右辺を返す
 // || と違いは undefined か null で限定されてる点
