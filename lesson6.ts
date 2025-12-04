@@ -207,3 +207,41 @@ function toUpperCase83(x: string | number): string | number {
   return x;
 }
 const upperHello = toUpperCase('hello');
+
+// ８６- 型の互換===============================================
+// 1⃣文字列リテラル
+// 型構造が一致していれば互換性がある
+let targetHello = 'hello';
+let source: 'hello' = 'hello';
+targetHello = source;
+
+// ───────────────────────────────
+
+// 2⃣Enum型
+enum Color {
+  RED,
+  GREEN,
+  BLUE,
+}
+
+let targetColor = Color.RED;
+
+let sourceColor = 100;
+
+// 互換性があるためエラーにならない
+// enumは違う名前で型が作られていれば別型として扱われる => 名前的型付け
+targetColor = sourceColor;
+
+targetColor = Color.BLUE;
+// ───────────────────────────────
+
+// 3⃣関数
+let targetFunction = function (a: string, b: string) {};
+let sourceFunction = function (a: string) {};
+// TSは型構造が一致していればエラーにならない
+// 必要な分が渡ればよいって考え => 上記例では a: string が渡ればよいためエラーにならない
+targetFunction = sourceFunction;
+targetFunction('hi', 'hello');
+// ～7:35
+
+// ============================================================
