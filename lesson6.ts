@@ -212,8 +212,8 @@ const upperHello = toUpperCase('hello');
 // 1⃣文字列リテラル
 // 型構造が一致していれば互換性がある
 let targetHello = 'hello';
-let source: 'hello' = 'hello';
-targetHello = source;
+let sourceHello: 'hello' = 'hello';
+targetHello = sourceHello;
 
 // ───────────────────────────────
 
@@ -225,13 +225,11 @@ enum Color {
 }
 
 let targetColor = Color.RED;
-
 let sourceColor = 100;
 
 // 互換性があるためエラーにならない
 // enumは違う名前で型が作られていれば別型として扱われる => 名前的型付け
 targetColor = sourceColor;
-
 targetColor = Color.BLUE;
 // ───────────────────────────────
 
@@ -239,9 +237,24 @@ targetColor = Color.BLUE;
 let targetFunction = function (a: string, b: string) {};
 let sourceFunction = function (a: string) {};
 // TSは型構造が一致していればエラーにならない
-// 必要な分が渡ればよいって考え => 上記例では a: string が渡ればよいためエラーにならない
+// 必要な分が渡ればよいって考え => 上記例では a: string が渡ればよいためエラーにならない、b: string は sourceFunction側 で最初から存在しないだけ
+// 引数が少ない（制限が弱い）関数を、引数が多い（制限が強い）関数の型に代入可
 targetFunction = sourceFunction;
 targetFunction('hi', 'hello');
-// ～7:35
+
+// privateなど制限をつけると代入不可になる
+class AdvancedPerson {
+  name: string = 'Catherine';
+  age: number = 27;
+}
+
+class AdvancedCity {
+  name: string = 'NewYork';
+  age: number = 100;
+}
+
+let targetPerson = new AdvancedPerson();
+let sourceCity = new AdvancedCity();
+targetPerson = sourceCity;
 
 // ============================================================
