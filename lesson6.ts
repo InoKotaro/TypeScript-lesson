@@ -258,3 +258,8 @@ let sourceCity = new AdvancedCity();
 targetPerson = sourceCity;
 
 // ============================================================
+
+// ８７- TypeScriptの型安全性、JavaScriptの柔軟性
+// string × string => string
+// string × number => number
+// などに型推論される
