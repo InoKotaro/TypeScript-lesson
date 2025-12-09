@@ -208,6 +208,18 @@ function toUpperCase83(x: string | number): string | number {
 }
 const upperHello = toUpperCase('hello');
 
+// ８８- オーバーロードを型で表現する書く必要がある
+// オーバーロード全関数に対応する関数を画
+interface toUpperCaseOverload {
+  (x: string): number;
+  (x: number): number;
+}
+
+// string と number へ対応できる toUpperCase83 を upperHello88定数 へ代入
+const upperHello88: toUpperCaseOverload = function (x: string | number) {
+  return 0;
+};
+
 // ８６- 型の互換===============================================
 // 1⃣文字列リテラル
 // 型構造が一致していれば互換性がある
