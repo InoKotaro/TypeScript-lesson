@@ -209,7 +209,7 @@ function toUpperCase83(x: string | number): string | number {
 const upperHello = toUpperCase('hello');
 
 // ８８- オーバーロードを型で表現する書く必要がある
-// オーバーロード全関数に対応する関数を画
+// オーバーロード全関数に対応する関数を書く
 interface toUpperCaseOverload {
   (x: string): number;
   (x: number): number;
@@ -219,6 +219,20 @@ interface toUpperCaseOverload {
 const upperHello88: toUpperCaseOverload = function (x: string | number) {
   return 0;
 };
+
+// ８９- 関数型のインターセクション（関数かつ関数）はオーバーロードになる
+interface FuncA {
+  (a: number, b: string): number;
+  (a: string, b: number): number;
+}
+
+interface FuncB {
+  (a: string): number;
+}
+
+let intersectionFunc: FuncA & FuncB = function (a: number | string, b?: string | number) {
+  return 0;
+}
 
 // ８６- 型の互換===============================================
 // 1⃣文字列リテラル
@@ -275,3 +289,4 @@ targetPerson = sourceCity;
 // string × string => string
 // string × number => number
 // などに型推論される
+
