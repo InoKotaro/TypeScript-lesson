@@ -221,18 +221,33 @@ const upperHello88: toUpperCaseOverload = function (x: string | number) {
 };
 
 // ８９- 関数型のインターセクション（関数かつ関数）はオーバーロードになる
+// interface FuncA {
+//   (a: number, b: string): number;
+//   (a: string, b: number): number;
+// }
+
+// interface FuncB {
+//   (a: string): number;
+// }
+
+// let intersectionFunc: FuncA & FuncB = function (a: number | string, b?: string | number) {
+//   return 0;
+// }
+
+// ９０- 関数型のユニオン型はパラメータがインターセクション型、戻り値はユニオン型になる
 interface FuncA {
-  (a: number, b: string): number;
-  (a: string, b: number): number;
+  (a: number): number;
+  (a: string): number;
 }
 
 interface FuncB {
   (a: string): number;
 }
 
-let intersectionFunc: FuncA & FuncB = function (a: number | string, b?: string | number) {
+let unionFunc: FuncA | FuncB;
+unionFunc = function (a: number | string) {
   return 0;
-}
+};
 
 // ８６- 型の互換===============================================
 // 1⃣文字列リテラル
@@ -290,3 +305,12 @@ targetPerson = sourceCity;
 // string × number => number
 // などに型推論される
 
+// ９１- レストパラメーターに配列やタプルを指定する方法 - labeled tuple
+// タプル（配列に並び順まで型で決める）で[number, string, boolean]を指定すると引数が(0, "hello", true)にならないとエラー
+function advancedFnA(...args: number[]) {}
+advancedFnA(0, 1, 2, 3);
+
+// オプショナルパラメータも使用可（配列の最後に書く必要）
+// 配列にレストパラメーターを最後に入れる際は
+function advancedFnB(...args: [Number, string, boolean?, ...number[]]) {}
+advancedFnB(0, 'hello', true, 1, 2, 3, 4, 5, 6);
