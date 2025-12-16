@@ -314,3 +314,11 @@ advancedFnA(0, 1, 2, 3);
 // 配列にレストパラメーターを最後に入れる際は
 function advancedFnB(...args: [Number, string, boolean?, ...number[]]) {}
 advancedFnB(0, 'hello', true, 1, 2, 3, 4, 5, 6);
+
+// ９２- 配列とタプルにreadonly修飾子をつける
+// args は 読み取り専用タプル になるため args を変更できなくなる
+function advancedFnC(...args: readonly [Number, string, boolean?, ...number[]]) {}
+advancedFnC(0, 'hello', true, 1, 2, 3, 4, 5, 6);
+// args[0] = 1; はエラー
+// args.push(10); はエラー
+// push, pop, splice などの破壊的操作がすべて禁止される
