@@ -322,3 +322,17 @@ advancedFnC(0, 'hello', true, 1, 2, 3, 4, 5, 6);
 // args[0] = 1; はエラー
 // args.push(10); はエラー
 // push, pop, splice などの破壊的操作がすべて禁止される
+
+// ９３- constアサーション
+// オブジェクトに直接続けて書く
+// as const をつけると readonly になる
+let hi = 'hi' as const;
+// hi = 'hello'; はエラー
+
+const milk= "milk" as const;
+let drink = milk;
+const array = [10, 20] as const;
+const peter = {
+  name: "Peter",
+  age: 38,
+} as const;
