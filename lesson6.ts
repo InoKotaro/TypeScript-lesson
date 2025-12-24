@@ -336,3 +336,7 @@ const peter = {
   name: "Peter",
   age: 38,
 } as const;
+
+// ９４- 型の中でtypeofを使う
+// 型を書く部分内（右辺）でtypeofを使うと name: "Peter", age: 38 が PeterType に代入される
+type PeterType = typeof peter;
