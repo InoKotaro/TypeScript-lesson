@@ -329,14 +329,31 @@ advancedFnC(0, 'hello', true, 1, 2, 3, 4, 5, 6);
 let hi = 'hi' as const;
 // hi = 'hello'; はエラー
 
-const milk= "milk" as const;
+const milk = 'milk' as const;
 let drink = milk;
 const array = [10, 20] as const;
 const peter = {
-  name: "Peter",
+  name: 'Peter',
   age: 38,
 } as const;
 
 // ９４- 型の中でtypeofを使う
 // 型を書く部分内（右辺）でtypeofを使うと name: "Peter", age: 38 が PeterType に代入される
 type PeterType = typeof peter;
+
+// ９５- シンボル型使い方
+// シンボル型は他値と被らないのが保証されてる
+// 文字列、数字など分かりやく表現されない
+// 特定シンボルを示す型（string,number型ではリテラル型に相当） => ユニークシンボル型 => typeof使用
+
+const symbol1 = Symbol();
+const symbol2 = Symbol();
+// キーでも使える
+const object = {
+  [symbol1]: 'hello',
+};
+
+function myFunction(mySymbol: symbol) {}
+// function myFunction(mySymbol: typeof symbol1) {} => typeof 使用で symbol1 だけに限定できる
+myFunction(symbol1);
+myFunction(symbol2);

@@ -9,7 +9,7 @@
     // See also https://aka.ms/tsconfig/module
     "module": "ESnext",
     "target": "ES2020",
-    "types": [],
+    "lib": ["ES2020", "DOM"],
     // For nodejs:
     // "lib": ["ES6", "DOM"],
     // "types": ["node"],
