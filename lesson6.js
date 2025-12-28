@@ -205,6 +205,7 @@ const peter = {
 // ９５- シンボル型使い方
 // シンボル型は他値と被らないのが保証されてる
 // 文字列、数字など分かりやく表現されない
+// 特定シンボルを示す型（string,number型ではリテラル型に相当） => ユニークシンボル型 => typeof使用
 const symbol1 = Symbol();
 const symbol2 = Symbol();
 // キーでも使える
@@ -212,5 +213,6 @@ const object = {
     [symbol1]: 'hello',
 };
 function myFunction(mySymbol) { }
+// function myFunction(mySymbol: typeof symbol1) {} => typeof 使用で symbol1 だけに限定できる
 myFunction(symbol1);
 myFunction(symbol2);
