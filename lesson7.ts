@@ -17,3 +17,26 @@ function copy<T extends { name: string }, U extends keyof T>(value: T, key: U): 
 }
 
 console.log(copy({ name: 'Jack', age: 30 }, 'name'));
+
+// １０１- Classに対してジェネリクスを使用する方法
+class LightDB<T extends string | number | boolean> {
+  private data: T[] = [];
+
+  add(item: T) {
+    this.data.push(item);
+  }
+
+  remove(item: T) {
+    this.data.splice(this.data.indexOf(item), 1);
+  }
+
+  get() {
+    return this.data;
+  }
+}
+
+const stringLightDB = new LightDB<string>();
+stringLightDB.add('Jack');
+stringLightDB.add('Jill');
+stringLightDB.remove('Jack');
+console.log(stringLightDB.get());
