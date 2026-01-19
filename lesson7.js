@@ -36,3 +36,4 @@ stringLightDB.add('Jack');
 stringLightDB.add('Jill');
 stringLightDB.remove('Jack');
 console.log(stringLightDB.get());
+

@@ -40,3 +40,14 @@ stringLightDB.add('Jack');
 stringLightDB.add('Jill');
 stringLightDB.remove('Jack');
 console.log(stringLightDB.get());
+
+// １０２- InterfaceやTypeエイリアスに対してジェネリクスを使用する方法
+type TmpDB<T> = {
+  id: number;
+  data: T[];
+};
+
+const tmpDB: TmpDB<number> = {
+  id: 3,
+  data: [33],
+};
