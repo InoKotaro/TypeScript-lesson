@@ -51,3 +51,24 @@ const tmpDB: TmpDB<number> = {
   id: 3,
   data: [33],
 };
+
+// １０３- 内蔵されているジェネリック型であるUtility型(TSが用意してあるジェネリクスを使った汎用的な型をまとめて内蔵されてる)
+interface Todo{
+  title: string;
+  text: string;
+}
+
+// Partial, Readonly はUtility型
+type Todoable = Partial<Todo>; 
+type ReadTodo = Readonly<Todo>;
+
+const fetchD = new Promise<string>(resolve => {
+  setTimeout(() => {
+    resolve("hello");}, 3000);
+})
+
+fetchD.then(data => {
+  data.toUpperCase();
+})
+
+const vegetables: Array<string> =["tomato", "broccoli", "asparagus"]
