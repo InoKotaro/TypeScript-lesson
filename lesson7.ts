@@ -72,3 +72,12 @@ fetchD.then(data => {
 })
 
 const vegetables: Array<string> =["tomato", "broccoli", "asparagus"]
+
+// １０４- デフォルトの型パラメーターを指定する方法
+interface ResponseD<T extends {message: string}= any>{
+  data: T;
+  status: number;
+
+}
+
+let tmp104: ResponseD
