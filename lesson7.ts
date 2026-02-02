@@ -53,31 +53,42 @@ const tmpDB: TmpDB<number> = {
 };
 
 // １０３- 内蔵されているジェネリック型であるUtility型(TSが用意してあるジェネリクスを使った汎用的な型をまとめて内蔵されてる)
-interface Todo{
+interface Todo {
   title: string;
   text: string;
 }
 
 // Partial, Readonly はUtility型
-type Todoable = Partial<Todo>; 
+type Todoable = Partial<Todo>;
 type ReadTodo = Readonly<Todo>;
 
-const fetchD = new Promise<string>(resolve => {
+const fetchD = new Promise<string>((resolve) => {
   setTimeout(() => {
-    resolve("hello");}, 3000);
-})
+    resolve('hello');
+  }, 3000);
+});
 
-fetchD.then(data => {
+fetchD.then((data) => {
   data.toUpperCase();
-})
+});
 
-const vegetables: Array<string> =["tomato", "broccoli", "asparagus"]
+const vegetables: Array<string> = ['tomato', 'broccoli', 'asparagus'];
 
 // １０４- デフォルトの型パラメーターを指定する方法
-interface ResponseD<T extends {message: string}= any>{
+interface ResponseD<T extends { message: string } = any> {
   data: T;
   status: number;
-
 }
 
-let tmp104: ResponseD
+let tmp104: ResponseD;
+
+// １０５- 型のfor文であるMapped Typesを使って型を変換する方法
+// readonly, ? などの修飾子を使って型を変換することができる
+interface Vegetable {
+  tomato: string;
+  broccoli: string;
+}
+
+type MappedType = {
+  [P in 'tomato' | 'broccoli' | 'asparagus']: string;
+};
