@@ -92,3 +92,11 @@ interface Vegetable {
 type MappedType = {
   [P in 'tomato' | 'broccoli' | 'asparagus']: string;
 };
+
+// １０６-型のif文であるConditional Types
+// tomato型がstring型に代入できればnumber型を返し、できなければboolean型を返す
+type ConditionalType = 'tomato' extends string ? number : boolean;
+
+type DistributiveConditionalType = ('tomato' | 'broccoli')  extends "tomato"
+  ? string
+  : boolean;
