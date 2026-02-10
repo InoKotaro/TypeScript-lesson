@@ -93,10 +93,16 @@ type MappedType = {
   [P in 'tomato' | 'broccoli' | 'asparagus']: string;
 };
 
-// １０６-型のif文であるConditional Types
+// １０６- 型のif文であるConditional Types
 // tomato型がstring型に代入できればnumber型を返し、できなければboolean型を返す
 type ConditionalType = 'tomato' extends string ? number : boolean;
 
 type DistributiveConditionalType = ('tomato' | 'broccoli')  extends "tomato"
   ? string
   : boolean;
+
+  // １０７- テンプレートリテラル型
+  type FirstName = 'John' | 'Jane';
+  type LastName = 'Doe' | 'Smith';
+  // バッククォートで動的に型を作成することができる
+  type FullName = `${FirstName} ${LastName}`;
